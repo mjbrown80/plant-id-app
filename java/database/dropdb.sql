@@ -9,5 +9,5 @@ WHERE datname = 'plant_db';
 
 DROP DATABASE plant_db;
 
---DROP USER final_capstone_owner;
---DROP USER final_capstone_appuser;
+DROP USER final_capstone_owner;
+DROP USER final_capstone_appuser;

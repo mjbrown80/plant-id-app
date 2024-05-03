@@ -5,16 +5,21 @@ import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.techelevator.model.Plant;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.context.annotation.PropertySource;
 import org.springframework.http.HttpEntity;
+import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpMethod;
 import org.springframework.http.ResponseEntity;
+import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
+import org.springframework.web.client.HttpClientErrorException;
 import org.springframework.web.client.RestTemplate;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
-@Service
+@Component
+//@PropertySource("classpath:application.properties")
 public class PlantService {
     @Value("${API_URL}")
     private String apiURL;
@@ -23,9 +28,13 @@ public class PlantService {
 
     public List<Plant> getPlants(String searchString){
 
-        String url = this.apiURL + this.key + searchString;
+        String url = this.apiURL + this.key + "&q=" + searchString;
 
-        HttpEntity<String> httpEntity = new HttpEntity<>("");
+//        HttpHeaders headers = new HttpHeaders();
+//        headers.set("Accept", "application/json");
+
+        HttpEntity<String> httpEntity = new HttpEntity<>("" );
+
         RestTemplate restTemplate = new RestTemplate();
 
         ObjectMapper objectMapper = new ObjectMapper();
@@ -43,11 +52,19 @@ public class PlantService {
                 String name = root.path(i).path("common_name").asText();
                 String id = root.path(i).path("id").asText();
                 String imageUrl = root.path(i).path("original_url").asText();
+                Plant plant = new Plant();
+                plant.setId(Integer.parseInt(id));
+                plant.setName(name);
+                plant.setUrl(imageUrl);
+                plantList.add(plant);
+
+//                Plant plant = new Plant(imageUrl, id, name);
+//                plantList.add(plant);
             }
         }catch (JsonProcessingException e){
 
         }
-        return plantList;
+        return null;
     }
 
 }
