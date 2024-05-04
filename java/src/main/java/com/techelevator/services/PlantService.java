@@ -50,21 +50,16 @@ public class PlantService {
 
             for (int i = 0; i < root.size(); i++){
                 String name = root.path(i).path("common_name").asText();
-                String id = root.path(i).path("id").asText();
-                String imageUrl = root.path(i).path("original_url").asText();
-                Plant plant = new Plant();
-                plant.setId(Integer.parseInt(id));
-                plant.setName(name);
-                plant.setUrl(imageUrl);
-                plantList.add(plant);
+                int id = root.path(i).path("id").asInt();
+                String imageUrl = root.path(i).path("default_image").path("original_url").asText();
 
-//                Plant plant = new Plant(imageUrl, id, name);
-//                plantList.add(plant);
+                Plant plant = new Plant(id, imageUrl, name);
+                plantList.add(plant);
             }
         }catch (JsonProcessingException e){
 
         }
-        return null;
+        return plantList;
     }
 
 }

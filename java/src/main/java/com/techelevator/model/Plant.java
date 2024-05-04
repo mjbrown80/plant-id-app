@@ -3,7 +3,13 @@ package com.techelevator.model;
 public class Plant {
     private int id;
     private String name;
-    private String url;
+    private String imageUrl;
+
+    public Plant(int id,String name, String imageUrl) {
+        this.id = id;
+        this.name = name;
+        this.imageUrl = imageUrl;
+    }
 
     public int getId() {
         return id;
@@ -22,11 +28,11 @@ public class Plant {
     }
 
     public String getUrl() {
-        return url;
+        return imageUrl;
     }
 
-    public void setUrl(String url) {
-        this.url = url;
+    public void setUrl(String ImageUrl) {
+        this.imageUrl = imageUrl;
     }
 
     @Override
@@ -34,7 +40,7 @@ public class Plant {
         return "Plant{" +
                 "id=" + id +
                 ", name='" + name + '\'' +
-                ", url='" + url + '\'' +
+                ", url='" + imageUrl + '\'' +
                 '}';
     }
 }
