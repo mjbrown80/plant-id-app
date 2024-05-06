@@ -16,10 +16,13 @@ public class PlantController {
     @Autowired
     PlantService plantService;
 
-    @RequestMapping(path="/test", method= RequestMethod.GET)
+    @RequestMapping(path="/plant", method= RequestMethod.GET)
         public List<Plant> test(@RequestParam String query){
 
             return plantService.getPlants(query);
         }
+
+//    @GetMapping("/plants")
+//    public Plant getPlants();
 
 }

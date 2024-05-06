@@ -19,7 +19,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 @Component
-//@PropertySource("classpath:application.properties")
 public class PlantService {
     @Value("${API_URL}")
     private String apiURL;
@@ -29,9 +28,6 @@ public class PlantService {
     public List<Plant> getPlants(String searchString){
 
         String url = this.apiURL + this.key + "&q=" + searchString;
-
-//        HttpHeaders headers = new HttpHeaders();
-//        headers.set("Accept", "application/json");
 
         HttpEntity<String> httpEntity = new HttpEntity<>("" );
 
