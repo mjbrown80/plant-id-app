@@ -16,6 +16,7 @@ export default {
         plantService.getPlants()
         .then(response => {
             console.log(response)
+            this.plantArray = response.data;
         })
     }
 }

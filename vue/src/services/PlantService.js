@@ -6,6 +6,6 @@ const http = axios.create( {
 
 export default {
     getPlants() {
-        return http.get('/plants')
+        return http.get('/plantlist')
     }
 }
