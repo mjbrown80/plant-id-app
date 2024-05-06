@@ -7,8 +7,6 @@
                 name: 'detail',
                 params: {
                     id: plant.id,
-                    name: plant.name,
-                    url: plant.url
                 },
             }">
             {{ plant.name }}
@@ -32,7 +30,7 @@ export default {
     created() {
         plantService.getPlants()
         .then(response => {
-            console.log(response)
+            // console.log(response)
             this.plantArray = response.data;
         })
     }

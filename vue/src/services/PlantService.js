@@ -7,5 +7,8 @@ const http = axios.create( {
 export default {
     getPlants() {
         return http.get('/plantlist')
-    }
+    },
+    getPlantById(id) {
+        return http.get(`/plant/${id}`)
+    },
 }

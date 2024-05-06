@@ -21,6 +21,8 @@ public class RestPlantAPIService implements PlantAPIService {
     private String apiURL;
     @Value("${API_KEY}")
     private String key;
+    @Value("${DETAIL_API_URL}")
+    private String detailApiURL;
 
     RestTemplate restTemplate = new RestTemplate();
     ObjectMapper objectMapper = new ObjectMapper();
@@ -47,7 +49,7 @@ public class RestPlantAPIService implements PlantAPIService {
     @Override
     public PlantDetail getPlantDetailById(int id) {
 
-        PlantDetail plantDetail = restTemplate.getForObject(apiURL + key + id, PlantDetail.class);
+        PlantDetail plantDetail = restTemplate.getForObject(detailApiURL + id +"?key=" + key, PlantDetail.class);
         return plantDetail;
     }
 
