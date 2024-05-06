@@ -2,10 +2,18 @@
   <div>
     <ul id="card">
         <li v-for="plant in plantArray" v-bind:key="plant.id">
-            {{ plant.id }}
+            <router-link
+            v-bind:to="{
+                name: 'detail',
+                params: {
+                    id: plant.id,
+                    name: plant.name,
+                    url: plant.url
+                },
+            }">
             {{ plant.name }}
-            <img id="thumbnail" v-bind:src="plant.url" alt="">
-            
+            <img id="thumbnail" v-bind:src="plant.url" alt="./assets.no-image.png">
+            </router-link>
         </li>
     </ul>
   </div>
@@ -39,6 +47,7 @@ ul > li {
     width: 200px;
     height: 200px;
     margin: 5rem;
+    margin-top: 1rem;
 }
 #card {
     display: flex;

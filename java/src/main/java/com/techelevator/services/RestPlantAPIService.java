@@ -4,6 +4,7 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.techelevator.model.Plant;
+import com.techelevator.model.PlantDetail;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpMethod;
@@ -44,6 +45,13 @@ public class RestPlantAPIService implements PlantAPIService {
     }
 
     @Override
+    public PlantDetail getPlantDetailById(int id) {
+
+        PlantDetail plantDetail = restTemplate.getForObject(apiURL + key + id, PlantDetail.class);
+        return plantDetail;
+    }
+
+    @Override
     public List<Plant> getPlantsByName(String searchString) {
 
         String url = this.apiURL + this.key + "&q=" + searchString;
@@ -71,6 +79,8 @@ public class RestPlantAPIService implements PlantAPIService {
         }
         return plantList;
     }
+
+
 
     private List<Plant> mapForNodes(JsonNode root) {
         List<Plant> plantList = new ArrayList<>();
