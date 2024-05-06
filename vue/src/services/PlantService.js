@@ -9,6 +9,6 @@ export default {
         return http.get('/plantlist')
     },
     getPlantById(id) {
-        return http.get(`/plant/${id}`)
-    },
+        return http.get(`/plants/${id}`)
+    }
 }

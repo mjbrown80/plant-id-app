@@ -7,7 +7,7 @@ import LoginView from '../views/LoginView.vue';
 import LogoutView from '../views/LogoutView.vue';
 import RegisterView from '../views/RegisterView.vue';
 import PlantView from '../views/PlantsView.vue'
-import Detail from '../components/PlantDetail.vue'
+import Detail from '../views/Detail.vue'
 
 /**
  * The Vue Router is used to "direct" the browser to render a specific view component

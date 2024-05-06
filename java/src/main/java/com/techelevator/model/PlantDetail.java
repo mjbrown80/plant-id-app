@@ -1,25 +1,27 @@
 package com.techelevator.model;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+
+import java.util.List;
+
 public class PlantDetail {
-    private int id;
+    @JsonProperty("id")
     private int apiId;
-    private String name;
+    @JsonProperty("common_name")
     private String commonName;
-    private String scientificName;
-    private String alternativeName;
+    @JsonProperty("scientific_name")
+    private List<String> scientificName;
+    @JsonProperty("other_name")
+    private List<String> alternativeName;
     private String cycle;
     private String Watering;
-    private String sunlight;
+    private List<String> sunlight;
+    @JsonProperty("original_url")
     private String imageUrl;
+    @JsonProperty("thumbnail")
     private String thumbnailUrl;
 
-    public int getId() {
-        return id;
-    }
 
-    public void setId(int id) {
-        this.id = id;
-    }
 
     public int getApiId() {
         return apiId;
@@ -27,14 +29,6 @@ public class PlantDetail {
 
     public void setApiId(int apiId) {
         this.apiId = apiId;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
     }
 
     public String getCommonName() {
@@ -45,19 +39,19 @@ public class PlantDetail {
         this.commonName = commonName;
     }
 
-    public String getScientificName() {
+    public List<String> getScientificName() {
         return scientificName;
     }
 
-    public void setScientificName(String scientificName) {
+    public void setScientificName(List<String> scientificName) {
         this.scientificName = scientificName;
     }
 
-    public String getAlternativeName() {
+    public List<String> getAlternativeName() {
         return alternativeName;
     }
 
-    public void setAlternativeName(String alternativeName) {
+    public void setAlternativeName(List<String> alternativeName) {
         this.alternativeName = alternativeName;
     }
 
@@ -77,11 +71,11 @@ public class PlantDetail {
         Watering = watering;
     }
 
-    public String getSunlight() {
+    public List<String> getSunlight() {
         return sunlight;
     }
 
-    public void setSunlight(String sunlight) {
+    public void setSunlight(List<String> sunlight) {
         this.sunlight = sunlight;
     }
 
@@ -104,9 +98,7 @@ public class PlantDetail {
     @Override
     public String toString() {
         return "plantDetail{" +
-                "id=" + id +
                 ", apiId=" + apiId +
-                ", name='" + name + '\'' +
                 ", commonName='" + commonName + '\'' +
                 ", scientificName='" + scientificName + '\'' +
                 ", alternativeName='" + alternativeName + '\'' +

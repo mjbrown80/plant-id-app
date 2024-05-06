@@ -1,6 +1,6 @@
 <template>
   <div>
-    <h2> </h2>
+    <h2> {{ name }}</h2>
   </div>
 </template>
 
@@ -9,7 +9,8 @@ import plantService from '../services/PlantService'
 export default {
     name: 'plant-detail',
     props: {
-        id: Number, String
+        id: Number, String,
+        name: String,
     },
     data(){
         return{

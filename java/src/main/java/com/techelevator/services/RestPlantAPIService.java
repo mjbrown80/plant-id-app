@@ -3,19 +3,23 @@ package com.techelevator.services;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.techelevator.exception.PlantNotFoundException;
 import com.techelevator.model.Plant;
 import com.techelevator.model.PlantDetail;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpMethod;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
+import org.springframework.web.client.HttpClientErrorException;
 import org.springframework.web.client.RestTemplate;
 
 import java.util.ArrayList;
 import java.util.List;
 
-@Component
+@Service
 public class RestPlantAPIService implements PlantAPIService {
     @Value("${API_URL}")
     private String apiURL;
@@ -48,9 +52,17 @@ public class RestPlantAPIService implements PlantAPIService {
 
     @Override
     public PlantDetail getPlantDetailById(int id) {
-
-        PlantDetail plantDetail = restTemplate.getForObject(detailApiURL + id +"?key=" + key, PlantDetail.class);
-        return plantDetail;
+        String url = detailApiURL + id +"?key=" + key;
+        try{
+            ResponseEntity<PlantDetail> response = restTemplate.getForEntity(url, PlantDetail.class);
+            return  response.getBody();
+        }catch (HttpClientErrorException e){
+            if (e.getStatusCode() == HttpStatus.NOT_FOUND){
+                throw new PlantNotFoundException("Plant nto found");
+            }else {
+                throw new RuntimeException("Internal Server Error");
+            }
+        }
     }
 
     @Override
@@ -96,4 +108,30 @@ public class RestPlantAPIService implements PlantAPIService {
         }
         return plantList;
     }
+
+//    private List<PlantDetail> mapForDetailedNodes(JsonNode root){
+//        List<PlantDetail> detailsList = new ArrayList<>();
+//        for (int i = 0; i < root.size(); i++){
+//            int apiId = root.path(i).path("id").asInt();
+//            String commonName = root.path(i).path("common_name").asText();
+//            String scientificName = root.path(i).path("scientific_name").asText();
+//            String alternativeName = root.path(i).path("other_name").asText();
+//            String cycle = root.path(i).path("cycle").asText();
+//            String watering = root.path(i).path("watering").asText();
+//            String sunLight = root.path(i).path("sunlight").asText();
+//            String image1 = root.path(i).path("default_image").path("original_url").asText();
+//
+//            PlantDetail detail = new PlantDetail();
+//            detail.setApiId(apiId);
+//            detail.setCommonName(commonName);
+//            detail.setScientificName(scientificName);
+//            detail.setAlternativeName(alternativeName);
+//            detail.setCycle(cycle);
+//            detail.setWatering(watering);
+//            detail.setSunlight(sunLight);
+//            detail.setImageUrl(image1);
+//            detailsList.add(detail);
+//        }
+//        return detailsList;
+//    }
 }
