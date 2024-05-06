@@ -19,7 +19,7 @@ public class PlantController {
     @RequestMapping(path="/plant", method= RequestMethod.GET)
         public List<Plant> test(@RequestParam String query){
 
-            return plantService.getPlants(query);
+            return plantService.getPlantsByName(query);
         }
 
 //    @GetMapping("/plants")

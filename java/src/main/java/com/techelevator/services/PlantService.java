@@ -19,13 +19,14 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 @Component
-public class PlantService {
+public class PlantService implements RestPlantAPIService{
     @Value("${API_URL}")
     private String apiURL;
     @Value("${API_KEY}")
     private String key;
 
-    public List<Plant> getPlants(String searchString){
+    @Override
+    public List<Plant> getPlantsByName(String searchString){
 
         String url = this.apiURL + this.key + "&q=" + searchString;
 
