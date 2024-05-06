@@ -5,7 +5,7 @@ public class Plant {
     private String name;
     private String imageUrl;
 
-    public Plant(int id,String name, String imageUrl) {
+    public Plant(int id, String imageUrl, String name) {
         this.id = id;
         this.name = name;
         this.imageUrl = imageUrl;

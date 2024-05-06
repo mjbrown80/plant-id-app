@@ -30,7 +30,7 @@ const routes = [
     name: 'plants',
     component: PlantView,
     meta: {
-      requiresAuth: true
+      requiresAuth: false
     }
   },
   {
