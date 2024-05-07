@@ -10,7 +10,7 @@
                 },
             }">
             {{ plant.name }}
-            <img id="thumbnail"  v-bind:src="plant.url ? plant.url : requrire('@assets/no-image=png')" alt="../assets/no-image.png">
+            <img id="thumbnail" v-bind:src="plant.url" alt="No Image Available">
             </router-link>
         </li>
     </ul>
@@ -30,7 +30,7 @@ export default {
     created() {
         plantService.getPlants()
         .then(response => {
-            // console.log(response)
+            console.log(response)
             this.plantArray = response.data;
         })
     }

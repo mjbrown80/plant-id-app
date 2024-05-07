@@ -3,7 +3,7 @@
     <h2> {{ plant.common_name }}</h2>
     <p>Alternate name: {{ plant.other_name }}</p>
     <p>Scientific Name: {{ plant.scientific_name }}</p>
-    <img id="detail-image" :src="image" alt="">
+    <img id="detail-image" :src="image" alt="No Image Available">
     <h3>Details/Care</h3>
     <p>{{ plant.cycle }}</p>
     <p>Sunlight required: {{ plant.sunlight }}</p>
