@@ -10,7 +10,7 @@
                 },
             }">
             {{ plant.name }}
-            <img id="thumbnail" v-bind:src="plant.url" alt="./assets.no-image.png">
+            <img id="thumbnail"  v-bind:src="plant.url ? plant.url : requrire('@assets/no-image=png')" alt="../assets/no-image.png">
             </router-link>
         </li>
     </ul>
