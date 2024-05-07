@@ -15,6 +15,7 @@ export default {
     data(){
         return{
             plant: {},
+            image: "",
         }
     },
     created() {
@@ -22,6 +23,7 @@ export default {
         .then(response => {
             console.log(response)
             this.plant = response.data
+            this.image = response.data.default_image.original_url
         })
     }
 

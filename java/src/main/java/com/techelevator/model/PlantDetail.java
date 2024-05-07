@@ -16,10 +16,9 @@ public class PlantDetail {
     private String cycle;
     private String Watering;
     private List<String> sunlight;
-    @JsonProperty("original_url")
-    private String imageUrl;
-    @JsonProperty("thumbnail")
-    private String thumbnailUrl;
+    @JsonProperty("default_image")
+    private DefaultImage defaultImage;
+
 
 
 
@@ -79,20 +78,12 @@ public class PlantDetail {
         this.sunlight = sunlight;
     }
 
-    public String getImageUrl() {
-        return imageUrl;
+    public DefaultImage getDefaultImage() {
+        return defaultImage;
     }
 
-    public void setImageUrl(String imageUrl) {
-        this.imageUrl = imageUrl;
-    }
-
-    public String getThumbnailUrl() {
-        return thumbnailUrl;
-    }
-
-    public void setThumbnailUrl(String thumbnailUrl) {
-        this.thumbnailUrl = thumbnailUrl;
+    public void setDefaultImage(DefaultImage defaultImage) {
+        this.defaultImage = defaultImage;
     }
 
     @Override
@@ -105,8 +96,6 @@ public class PlantDetail {
                 ", cycle='" + cycle + '\'' +
                 ", Watering='" + Watering + '\'' +
                 ", sunlight='" + sunlight + '\'' +
-                ", imageUrl='" + imageUrl + '\'' +
-                ", thumbnailUrl='" + thumbnailUrl + '\'' +
                 '}';
     }
 }
