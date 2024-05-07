@@ -2,18 +2,19 @@
   <div>
     <ul >
         <li v-for="plant in plantArray" v-bind:key="plant.id">
-            <div id="card" >
-            <router-link
+           <router-link
             v-bind:to="{
                 name: 'detail',
                 params: {
                     id: plant.id,
                 },
             }">
+            <div id="card" >
             {{ plant.name }}
             <img id="thumbnail" v-bind:src="plant.url" alt="No Image Available">
-            </router-link>
+            
             </div>
+            </router-link>
         </li>
     </ul>
   </div>
@@ -46,13 +47,18 @@ ul > li {
 #thumbnail {
     width: 200px;
     height: 200px;
-    margin: 5rem;
+    margin: auto;
     margin-top: 1rem;
+    margin-bottom: 3rem;
+    display: block;
 }
 #card {
-    display: flex;
-    flex-wrap: wrap;
     width: 300px;
+    border: black;
+    border-style: outset;
+    margin: 2rem;
+    align-content: center;
+    background:linear-gradient( #C8DF52,#0A7029) ;
 }
 li {
     display: inline-block;
