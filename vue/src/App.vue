@@ -2,6 +2,7 @@
   <div id="app">
     <header>
       <h1 id="header-text">Growing a Greener Thumb</h1>
+      <p id="header-quote">Improving the world with you knowledge</p>
     <div id="nav">
       <router-link v-bind:to="{ name: 'home' }">Home</router-link>&nbsp;|&nbsp;
       <router-link v-bind:to="{ name: 'plants' }">Plants</router-link>&nbsp;|&nbsp;
@@ -13,31 +14,40 @@
 </template>
 
 <style>
-#app{
-  text-align: center;
+*{
   margin: 0px;
   padding: 0px;
+}
+#app{
+  text-align: center;
+  
 }
 header {
   display: flex;
   flex-direction: column;
-  background: linear-gradient(45deg, #0A7029,#FEDE00);
+  background: linear-gradient(45deg, #0A7029,#FEDE00, #DBE8D8);
   height: 17rem;
   justify-content: space-between;
-  padding: 0px, 20px;
 }
 body {
-  background: linear-gradient(45deg, #0A7029,#DBE8D8 ) ;
+  /* background: linear-gradient(240deg, #0A7029 ,#FEDE00,#DBE8D8); */
+  background-image: url("./assets/painting1.jpeg");
+  background-size: cover;
+  min-height: 100vh;
 }
 #header-text {
-  color: ivory;
+  color:#0A7029;
   font-size: 5rem;
+}
+#header-quote {
+  color:#0A7029;
+  font-size: 2rem;
 }
 #nav {
   padding: 1rem;
   background-color: #FEDE00;
   border: #0A7029;
   border-style: outset;
-  
+
 }
 </style>
