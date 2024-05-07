@@ -1,7 +1,8 @@
 <template>
   <div>
-    <ul id="card">
+    <ul >
         <li v-for="plant in plantArray" v-bind:key="plant.id">
+            <div id="card" >
             <router-link
             v-bind:to="{
                 name: 'detail',
@@ -12,6 +13,7 @@
             {{ plant.name }}
             <img id="thumbnail" v-bind:src="plant.url" alt="No Image Available">
             </router-link>
+            </div>
         </li>
     </ul>
   </div>
@@ -49,5 +51,10 @@ ul > li {
 }
 #card {
     display: flex;
+    flex-wrap: wrap;
+    width: 300px;
+}
+li {
+    display: inline-block;
 }
 </style>
