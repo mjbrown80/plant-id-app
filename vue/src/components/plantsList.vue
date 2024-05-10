@@ -58,7 +58,7 @@ ul > li {
     border-style: outset;
     margin: 2rem;
     align-content: center;
-    background:linear-gradient( #C8DF52,#0A7029) ;
+    background:linear-gradient( #C8DF52,#0A7029);
 }
 li {
     display: inline-block;

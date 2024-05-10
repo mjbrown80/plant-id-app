@@ -1,5 +1,6 @@
 <template>
-  <div>
+    <div id="detail-container">
+  <div id="detail-card">
     <h2> {{ plant.common_name }}</h2>
     <p>Alternate name: {{ plant.other_name }}</p>
     <p>Scientific Name: {{ plant.scientific_name }}</p>
@@ -9,6 +10,7 @@
     <p>Sunlight required: {{ plant.sunlight }}</p>
     <p>Water Needed: {{ plant.watering }}</p>
     <p></p>
+  </div>
   </div>
 </template>
 
@@ -43,5 +45,16 @@ export default {
 <style>
 #detail-image{
     width: 400px;
+}
+#detail-card{
+    width: 500px;
+    margin: 2rem;
+    border: black;
+    border-style: outset;
+    background:linear-gradient( #C8DF52,#0A7029);
+}
+#detail-container {
+    display: flex;
+    justify-content: center;
 }
 </style>
