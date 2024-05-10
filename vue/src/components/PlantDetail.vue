@@ -12,6 +12,9 @@
     <p></p>
   </div>
   </div>
+  <router-link to="/plants">
+        <button id="detail-back-btn">Back to Plants</button>
+    </router-link>
 </template>
 
 <script>
@@ -56,5 +59,12 @@ export default {
 #detail-container {
     display: flex;
     justify-content: center;
+}
+#detail-back-btn {
+    background: #C8DF52;
+    height: 2rem;
+    padding: 0 1rem;
+    font-size: large;   
+    
 }
 </style>
