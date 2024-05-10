@@ -29,6 +29,7 @@
 <script>
 import plantService from "../services/PlantService";
 
+
 export default {
   name: "plant-list",
   data() {

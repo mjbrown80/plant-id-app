@@ -29,11 +29,7 @@ export default {
   },
   methods: {
     performSearch(query){
-      PlantService.searchPlants(query)
-      .then(response => {
-        console.log(response.data)
-      })
-      console.log('Search query:', query)
+      this.$router.push({ name: 'plants', query: { search: query}})
     }
   }
 }
