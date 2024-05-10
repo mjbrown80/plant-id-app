@@ -10,5 +10,8 @@ export default {
     },
     getPlantById(id) {
         return http.get(`/plants/${id}`)
-    }
+    },
+    searchPlants(query) {
+        return http.get(`/plant?query=${query}`)
+    }   
 }

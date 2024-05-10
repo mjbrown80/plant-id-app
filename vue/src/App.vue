@@ -21,13 +21,18 @@
 
 <script>
 import SearchBar from './components/SearchBar.vue'
+import PlantService from './services/PlantService';
 
 export default {
   components: {
-    SearchBar
+    SearchBar,
   },
   methods: {
     performSearch(query){
+      PlantService.searchPlants(query)
+      .then(response => {
+        console.log(response.data)
+      })
       console.log('Search query:', query)
     }
   }
