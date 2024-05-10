@@ -75,7 +75,7 @@ body {
 }
 #nav a:hover {
   background-color: #0A7029;
-  color: black;
+  color: ivory;
 }
 /* #nav a:active {
   background-color: #0A7029;
@@ -85,6 +85,7 @@ body {
   font-size: 30px;
   float: left;
   padding: 14px 16px;
+  text-decoration: none;
 }
 #monet-quote{
   color: #0A7029;
