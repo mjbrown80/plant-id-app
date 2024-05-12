@@ -1,5 +1,6 @@
 <template>
   <div>
+  
     <search-list v-if="searchResults.length > 0" :plantArray="searchResults"/>
     <plants-list v-else :plantArray="allPlants"/>
   </div>
@@ -10,10 +11,12 @@ import plantsList from '../components/plantsList.vue'
 import SearchList from '../components/SearchList.vue'
 import PlantService from '../services/PlantService'
 
+
 export default {
   components: { 
     plantsList,
     SearchList, 
+    
   },
   data() {
     return {
@@ -38,6 +41,7 @@ export default {
       })
     },
     performSearch(query){
+      console.log("Search query:", query)
       PlantService.searchPlants(query)
       .then(response => {
         if (Array.isArray(response.data)){
@@ -50,7 +54,7 @@ export default {
       })
       .catch(error => {
         console.error(error)
-      })
+       })
     }
   }
 
