@@ -17,6 +17,9 @@ export function createStore(currentToken, currentUser) {
         state.user = user;
         localStorage.setItem('user', JSON.stringify(user));
       },
+      GET_NEXT_PREVIOUS(state, values){
+        state.startingVal = values.startingVal
+      },
       LOGOUT(state) {
         localStorage.removeItem('token');
         localStorage.removeItem('user');

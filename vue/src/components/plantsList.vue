@@ -22,6 +22,10 @@
           </router-link>
       </li>
     </ul>
+    <div id="button-container">
+    <button id="previous-plants" v-if="$store.state.startingVal != 0">previous</button>
+    <button id="next-plants" @click="getNextPlants">next</button>
+    </div>
   </div>
 </template>
 
@@ -35,6 +39,20 @@ export default {
     return {
       plantArray: [],
     };
+  },
+  methods: {
+    getNextPlants() {
+      let start = this.$store.state.startingVal
+      start += 30
+      plantService.getNewPlants(start)
+      .then( response => {
+        this.plantArray = response.data
+        let values = {
+          startingVal: start
+        }
+        this.$store.commit("GET_NEXT_PREVIOUS", values)
+      })
+    }
   },
   created() {
     plantService.getPlants().then((response) => {
@@ -69,4 +87,28 @@ ul > li {
 li {
   display: inline-block;
 }
+#button-container {
+  margin-top: 20px;
+}
+#previous-plants, #next-plants{
+  background-color: #0a7029;
+  color: ivory;
+  margin: 20px;
+  padding: 8px 16px;
+  border-radius: 10px;
+  min-height: 30px;
+  min-width: 120px;
+}
+ #next-plants:hover{
+  background-color: #C8DF52;
+  color: #0a7029;
+  transition: 0.7s;
+}
+#previous-plants:hover{
+  background-color: #C8DF52;
+  color: #0a7029;
+  transition: 0.7s;
+}
+
+
 </style>

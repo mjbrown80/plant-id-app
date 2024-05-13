@@ -48,15 +48,27 @@ export default {
 header {
   display: flex;
   flex-direction: column;
-  background: linear-gradient(45deg, #0A7029,#FEDE00, #DBE8D8);
+  background: linear-gradient(45deg, #0A7029, #E6B560, #C8DF52);
   height: 17rem;
   justify-content: space-between;
 }
 body {
-  /* background: linear-gradient(240deg, #0A7029 ,#FEDE00,#DBE8D8); */
-  background-image: url("./assets/painting1.jpeg");
-  background-size: cover;
+  background: linear-gradient(240deg, #0A7029, #E6B560,#C8DF52, #DBE8D8);
+  /* background-image: url("./assets/painting1.jpeg"); */
+  background-size: 400% 400%;
+  animation: gradient 15s ease infinite;
   min-height: 100vh;
+}
+@keyframes gradient {
+  0%{
+    background-position: 0% 50%;
+  }
+  50%{
+    background-position: 100% 50%;
+  }
+  100%{
+    background-position: 0% 50%;
+  }
 }
 #header-text {
   color:#0A7029;
@@ -69,7 +81,7 @@ body {
 #nav {
   padding: 14px 16px;
   padding: 1rem;
-  background-color: #FEDE00;
+  background-color: #E6B560;
   border: #0A7029;
   border-style: outset;
 }
@@ -77,10 +89,6 @@ body {
   background-color: #0A7029;
   color: ivory;
 }
-/* #nav a:active {
-  background-color: #0A7029;
-  color: white;
-} */
 .nav-link {
   font-size: 30px;
   float: left;

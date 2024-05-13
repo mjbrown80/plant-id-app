@@ -25,7 +25,7 @@
 </template>
 
 <script>
-import PlantService from "../services/PlantService";
+
 export default {
   name: "search-list",
   props: {
