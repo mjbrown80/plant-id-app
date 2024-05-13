@@ -11,6 +11,9 @@ public class Plant {
         this.imageUrl = imageUrl;
     }
 
+    public Plant() {
+    }
+
     public int getId() {
         return id;
     }

@@ -29,9 +29,13 @@ public class PlantController {
     }
     @RequestMapping(path="/plant", method= RequestMethod.GET)
         public List<Plant> plantSearch(@RequestParam String query){
-
             return plantService.getPlantsByName(query);
-        }
+    }
+    @GetMapping("/plantlist/{startVal}")
+    public List<Plant> getMorePlants(@PathVariable int startVal){
+        return plantService.getMorePlants(startVal);
+    }
+
 
 
 

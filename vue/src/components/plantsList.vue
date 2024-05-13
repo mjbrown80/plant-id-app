@@ -20,7 +20,6 @@
             />
             </div>
           </router-link>
-        
       </li>
     </ul>
   </div>

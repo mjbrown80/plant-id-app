@@ -6,12 +6,12 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.techelevator.exception.PlantNotFoundException;
 import com.techelevator.model.Plant;
 import com.techelevator.model.PlantDetail;
+import com.techelevator.model.Data;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpMethod;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.HttpClientErrorException;
 import org.springframework.web.client.RestTemplate;
@@ -36,6 +36,23 @@ public class RestPlantAPIService implements PlantAPIService {
     public List<Plant> getPlants() {
         String url = this.apiURL + this.key;
         String response = restTemplate.getForObject(url, String.class);
+
+        List<Plant> plants = new ArrayList<>();
+
+        try {
+            jsonNode = objectMapper.readTree(response);
+            JsonNode root = jsonNode.path("data");
+            plants = mapForNodes(root);
+        } catch (JsonProcessingException e) {
+            throw new RuntimeException(e);
+        }
+
+        return plants;
+    }
+    public List<Plant> getMorePlants(int startVal){
+        String api = apiURL + key + "&page=" + startVal;
+        String response = restTemplate.getForObject(api, String.class);
+
 
         List<Plant> plants = new ArrayList<>();
 
@@ -93,6 +110,9 @@ public class RestPlantAPIService implements PlantAPIService {
         }
         return plantList;
     }
+
+
+
 
 
 
