@@ -1,6 +1,6 @@
 <template>
   <div>
-    <ul>
+    <ul>  
       <li v-for="plant in plantArray" v-bind:key="plant.id">
         
           <router-link
@@ -22,16 +22,12 @@
           </router-link>
       </li>
     </ul>
-    <div id="button-container">
-    <button id="previous-plants" v-if="$store.state.startingVal != 0">previous</button>
-    <button id="next-plants" @click="getNextPlants">next</button>
-    </div>
+    
   </div>
 </template>
 
 <script>
 import plantService from "../services/PlantService";
-
 
 export default {
   name: "plant-list",
@@ -40,27 +36,16 @@ export default {
       plantArray: [],
     };
   },
-  methods: {
-    getNextPlants() {
-      let start = this.$store.state.startingVal
-      start += 30
-      plantService.getNewPlants(start)
-      .then( response => {
-        this.plantArray = response.data
-        let values = {
-          startingVal: start
-        }
-        this.$store.commit("GET_NEXT_PREVIOUS", values)
+  methods: {},
+  created() {
+    if(!this.$store.state.plantArray.length){
+      plantService.getPlants()
+      .then(response => {
+        this.$store.commit("INIT_PLANTS", response.data)
       })
     }
   },
-  created() {
-    plantService.getPlants().then((response) => {
-      console.log(response);
-      this.plantArray = response.data;
-    });
-  },
-};
+  }
 </script>
 
 <style>

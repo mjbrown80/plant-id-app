@@ -5,7 +5,9 @@ export function createStore(currentToken, currentUser) {
   let store = _createStore({
     state: {
       token: currentToken || '',
-      user: currentUser || {}
+      user: currentUser || {},
+      startingVal: 0,
+      plantArray: []
     },
     mutations: {
       SET_AUTH_TOKEN(state, token) {
@@ -19,12 +21,18 @@ export function createStore(currentToken, currentUser) {
       },
       GET_NEXT_PREVIOUS(state, values){
         state.startingVal = values.startingVal
+        state.plantArray = values.plantArray
+      },
+      INIT_PLANTS(state, plants){
+        state.plantArray = plants
       },
       LOGOUT(state) {
         localStorage.removeItem('token');
         localStorage.removeItem('user');
         state.token = '';
         state.user = {};
+        state.plantArray = []
+        state.startingVal = 0
         axios.defaults.headers.common = {};
       }
     },
