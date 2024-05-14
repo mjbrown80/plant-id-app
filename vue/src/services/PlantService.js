@@ -15,6 +15,6 @@ export default {
         return http.get(`/plant?query=${query}`)
     }   ,
     getNewPlants(startVal){
-        return http.get(`plant/${startVal}`)
+        return http.get(`/plantlist/${startVal}`)
     }
 }
