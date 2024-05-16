@@ -22,6 +22,7 @@ export function createStore(currentToken, currentUser) {
       GET_NEXT_PREVIOUS(state, values){
         state.startingVal = values.startingVal
         state.plantArray = values.plantArray
+        console.log('GET_NEXT_PREVIOUS mutation called. New startingVal', values.startingVal, 'New plantArray:' , values.plantArray)
       },
       INIT_PLANTS(state, plants){
         state.plantArray = plants

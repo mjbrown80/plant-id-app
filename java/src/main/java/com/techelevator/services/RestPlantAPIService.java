@@ -50,7 +50,8 @@ public class RestPlantAPIService implements PlantAPIService {
         return plants;
     }
     public List<Plant> getMorePlants(int startVal){
-        String api = apiURL + key + "&page=" + startVal;
+        int page = startVal/ 30 + 1;
+        String api = apiURL + key + "&page=" + page;
         String response = restTemplate.getForObject(api, String.class);
 
 
