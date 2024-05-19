@@ -1,112 +1,5 @@
-
 <template>
   <div>
-    <ul>  
-      <li v-for="plant in plantArray" v-bind:key="plant.id">
-        
-          <router-link
-            v-bind:to="{
-              name: 'detail',
-              params: {
-                id: plant.id,
-              },
-            }"
-          >
-          <div id="card">
-            {{ plant.name }}
-            <img
-              id="thumbnail"
-              v-bind:src="plant.url"
-              alt="No Image Available"
-            />
-            </div>
-          </router-link>
-      </li>
-    </ul>
-    
-  </div>
-</template>
-
-<script>
-import plantService from "../services/PlantService";
-
-export default {
-  name: "plant-list",
-  computed: {
-    plantArray() {
-      return this.$store.state.plantArray
-    }
-  }
-  // data() {
-  //   return {
-  //     plantArray: [],
-  //   };
-  // },
-  // methods: {},
-  // created() {
-  //   if(!this.$store.state.plantArray.length){
-  //     plantService.getPlants()
-  //     .then(response => {
-  //       this.$store.commit("INIT_PLANTS", response.data)
-  //     })
-  //   }
-  // },
-  }
-</script>
-
-<style>
-ul > li {
-  list-style-type: none;
-}
-#thumbnail {
-  width: 200px;
-  height: 200px;
-  margin: auto;
-  margin-top: 1rem;
-  margin-bottom: 3rem;
-  display: block;
-}
-#card {
-  width: 300px;
-  height: 300px;
-  border: black;
-  border-style: outset;
-  margin: 1rem;
-  align-content: center;
-  background: linear-gradient(#c8df52, #0a7029);
-}
-li {
-  display: inline-block;
-}
-#button-container {
-  margin-top: 20px;
-}
-#previous-plants, #next-plants{
-  background-color: #0a7029;
-  color: ivory;
-  margin: 20px;
-  padding: 8px 16px;
-  border-radius: 10px;
-  min-height: 30px;
-  min-width: 120px;
-}
- #next-plants:hover{
-  background-color: #C8DF52;
-  color: #0a7029;
-  transition: 0.7s;
-}
-#previous-plants:hover{
-  background-color: #C8DF52;
-  color: #0a7029;
-  transition: 0.7s;
-}
-
-
-</style>
-
-<!-- <template>
-  <div>
-    <button>hello</button>
     <ul>
       <li v-for="plant in allPlants" :key="plant.id">
         <router-link :to="{ name: 'detail', params: { id: plant.id } }">
@@ -176,10 +69,6 @@ export default {
 </script>
 
 <style>
-/* Same CSS as before */
-</style>
-
-<style>
 ul > li {
   list-style-type: none;
 }
@@ -225,4 +114,4 @@ li {
   color: #0a7029;
   transition: 0.7s;
 }
-</style> -->
+</style>
