@@ -24,8 +24,8 @@ export default {
   name: "plant-list",
   data() {
     return {
-      allPlants: [],
-      startingVal: 0,
+      // allPlants: [],
+      // startingVal: 0,
     }
   },
   created() {
@@ -37,8 +37,16 @@ export default {
         console.log('Inital plants:', response.data)
       })
     }
-    this.allPlants = this.$store.state.plantArray
-    this.startingVal = this.$store.state.startingVal
+    // this.allPlants = this.$store.state.plantArray
+    // this.startingVal = this.$store.state.startingVal
+  },
+  computed: {
+    allPlants() {
+      return this.$store.getters.allPlants
+    },
+    startingVal() {
+      return this.$store.getters.startingVal
+    }
   },
   methods: {
     getNextPlants() {
@@ -59,14 +67,6 @@ export default {
       });
     }
   },
-  // watch: {
-  //   plantArray(newVal) {
-  //     console.log('Updated plantArray:', newVal);
-  //   },
-  //   startingVal(newVal) {
-  //     console.log('Updated startingVal:', newVal);
-  //   }
-  // }
 };
 </script>
 
