@@ -12,59 +12,61 @@
     </ul>
     <div id="button-container">
       <button id="previous-plants" @click="getPreviousPlants" :disabled="startingVal === 0">Previous</button>
-      <button id="next-plants" @click="getNextPlants">Next</button>
+      <button id="next-plants" @click="getNextPlants" :disabled="allPlants.length < 30">Next</button>
     </div>
   </div>
 </template>
 
 <script>
-import { mapState, mapMutations } from 'vuex';
 import plantService from "../services/PlantService";
 
 export default {
   name: "plant-list",
-  computed: {
-    ...mapState(['plantArray', 'startingVal']),
-    allPlants() {
-      return this.plantArray;
+  data() {
+    return {
+      allPlants: [],
+      startingVal: 0,
     }
   },
   created() {
-    if (!this.plantArray.length) {
-      console.log('Fetching initial plants');
-      plantService.getPlants().then(response => {
-        this.$store.commit("INIT_PLANTS", response.data);
-        console.log('Initial plants:', response.data);
-      });
+    if(!this.$store.state.plantArray.length) {
+      console.log('Fetching intial plants')
+      plantService.getPlants()
+      .then( response => {
+        this.$store.commit("INIT_PLANTS", response.data)
+        console.log('Inital plants:', response.data)
+      })
     }
+    this.allPlants = this.$store.state.plantArray
+    this.startingVal = this.$store.state.startingVal
   },
   methods: {
-    ...mapMutations(['GET_NEXT_PREVIOUS']),
     getNextPlants() {
       let start = this.startingVal + 30;
-      console.log('Fetching next plants from', start);
-      plantService.getNewPlants(start).then(response => {
-        console.log('Next plants:', response.data);
-        this.GET_NEXT_PREVIOUS({ startingVal: start, plantArray: response.data });
+      console.log('Fetching next plants from', start)
+      plantService.getNewPlants(start)
+      .then(response => {
+        console.log('Next plants:', response.data)
+        this.$store.commit("GET_NEXT_PREVIOUS", {startingVal: start, plantArray: response.data})
       });
     },
     getPreviousPlants() {
-      let start = Math.max(this.startingVal - 30, 0);
-      console.log('Fetching previous plants from', start);
+      let start = Math.max(this.startingVal - 30, 0)
+      console.log('Fetching previous plants from', start)
       plantService.getNewPlants(start).then(response => {
-        console.log('Previous plants:', response.data);
-        this.GET_NEXT_PREVIOUS({ startingVal: start, plantArray: response.data });
+        console.log('Previous plants:', response.data)
+        this.$store.commit("GET_NEXT_PREVIOUS", { startingVal: start, plantArray: response.data })
       });
     }
   },
-  watch: {
-    plantArray(newVal) {
-      console.log('Updated plantArray:', newVal);
-    },
-    startingVal(newVal) {
-      console.log('Updated startingVal:', newVal);
-    }
-  }
+  // watch: {
+  //   plantArray(newVal) {
+  //     console.log('Updated plantArray:', newVal);
+  //   },
+  //   startingVal(newVal) {
+  //     console.log('Updated startingVal:', newVal);
+  //   }
+  // }
 };
 </script>
 
